@@ -1,0 +1,184 @@
+1)
+import random
+ 
+inclusive_range = (1, 100)
+ 
+print("Guess my target number that is between %i and %i (inclusive).\n"
+      % inclusive_range)
+target = random.randint(*inclusive_range)
+answer, i = None, 0
+while answer != target:
+    i += 1
+    txt = input("Your guess(%i): " % i)
+    try:
+        answer = int(txt)
+    except ValueError:
+        print("  I don't understand your input of '%s' ?" % txt)
+        continue
+    if answer < inclusive_range[0] or answer > inclusive_range[1]:
+        print("  Out of range!")
+        continue
+    if answer == target:
+        print("  Ye-Haw!!")
+        break
+    if answer < target: print("  Too low.")
+    if answer > target: print("  Too high.")
+ 
+print("\nThanks for playing.")
+import random
+ 
+inclusive_range = (1, 100)
+ 
+print("Guess my target number that is between %i and %i (inclusive).\n"
+      % inclusive_range)
+target = random.randint(*inclusive_range)
+answer, i = None, 0
+while answer != target:
+    i += 1
+    txt = input("Your guess(%i): " % i)
+    try:
+        answer = int(txt)
+    except ValueError:
+        print("  I don't understand your input of '%s' ?" % txt)
+        continue
+    if answer < inclusive_range[0] or answer > inclusive_range[1]:
+        print("  Out of range!")
+        continue
+    if answer == target:
+        print("  Ye-Haw!!")
+        break
+    if answer < target: print("  Too low.")
+    if answer > target: print("  Too high.")
+ 
+print("\nThanks for playing.")
+Guess my target number that is between 1 and 100 (inclusive).
+
+Your guess(1): 50
+  Too high.
+Your guess(2): 25
+  Too low.
+Your guess(3): 40
+  Too high.
+Your guess(4): 30
+  Too low.
+Your guess(5): 35
+  Too high.
+Your guess(6): 33
+  Too high.
+Your guess(7): 32
+  Too high.
+Your guess(8): 31
+  Ye-Haw!!
+
+
+2)
+
+
+For Example 
+
+**White**
+9 = white queen
+5 = white rook
+3 = bishop
+3 = knight
+1 = pawn
+
+**black**
+-9 = white queen
+-5 = white rook
+-3 = bishop
+-3 = knight
+-1 = pawn
+
+White King: very large positive number
+Black King: very large negative number
+
+**White**
+9 = white queen
+5 = white rook
+3 = bishop
+3 = knight
+1 = pawn
+
+**black**
+-9 = white queen
+-5 = white rook
+-3 = bishop
+-3 = knight
+-1 = pawn
+
+White King: very large positive number
+Black King: very large negative number
+
+function generateEmptyBoard() {
+    var row = [];
+    for(var i = 0; i < 120; i++) {
+        row.push((i < 20 || i > 100 || !(i % 10) || i % 10 == 9) 
+            ? -1 
+            : i2an(i));
+    }
+    return row;
+}
+
+// converts an index in the mailbox into its corresponding value in algebraic notation
+function i2an(i) {
+    return "abcdefgh"[(i % 10) - 1] + (10 - Math.floor(i / 10));
+}
+function knightMoves(square, board) {
+    var i = an2i(square);
+    var moves = [];
+    [8, 12, 19, 21].forEach(function(offset) {
+        [i + offset, i - offset].forEach(function(pos) {
+            // make sure we're on the board
+            if (board[pos] != -1) {
+                // in a real implementation you'd also check whether 
+                // the squares you encounter are occupied
+                moves.push(board[pos]);
+            }
+        });
+    });
+    return moves;
+}
+
+// converts a position in algebraic notation into its location in the mailbox
+function an2i(square) {
+    return "abcdefgh".indexOf(square[0]) + 1 + (10 - square[1]) * 10;
+}
+function knightMoves(square, board) {
+    var i = an2i(square);
+    var moves = [];
+    [8, 12, 19, 21].forEach(function(offset) {
+        [i + offset, i - offset].forEach(function(pos) {
+            // make sure we're on the board
+            if (board[pos] != -1) {
+                // in a real implementation you'd also check whether 
+                // the squares you encounter are occupied
+                moves.push(board[pos]);
+            }
+        });
+    });
+    return moves;
+}
+
+// converts a position in algebraic notation into its location in the mailbox
+function an2i(square) {
+    return "abcdefgh".indexOf(square[0]) + 1 + (10 - square[1]) * 10;
+}
+
+function bishopMoves(square, board) {
+    var oSlide = function(direction) {
+        return slide(square, direction, board);
+    }
+    return [].concat(oSlide(11), oSlide(-11), oSlide(9), oSlide(-9)); 
+}
+
+function slide(square, direction, board) {
+    var moves = [];
+    for(var pos = direction + an2i(square); board[pos] != -1; pos += direction) {
+        // in a real implementation you'd also check whether 
+        // the squares you encounter are occupied
+        moves.push(board[pos]);
+    }
+    return moves;
+}
+
